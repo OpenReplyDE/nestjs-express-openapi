@@ -1,0 +1,199 @@
+openapi: 3.1.0
+info:
+  title: api-first-project
+  summary: My API-First project
+  version: 1.0.0
+  description: An API with several examples for different structures.
+webhooks: {}
+servers:
+  - description: local server
+    url: http://localhost:3000
+  - description: The publicly available server
+    url: https://api.{environment}.example.com/{version}
+    variables:
+      environment:
+        enum:
+          - dev
+          - stage
+          - prod
+        default: prod
+      version:
+        enum:
+          - v1
+        default: v1
+paths:
+  /greetings:
+    description: |
+      This demonstrates
+      - query parameter
+    get:
+      operationId: getGreetings
+      summary: Hello World Endpoint
+      description: Returns a simple "Hello, world!" like message.
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: A hello world response
+          content:
+            application/json:
+              schema:
+                type: string
+  /authentications:
+    description: |
+      This demonstrates
+      - multiple request content-types
+      - query parameters
+    post:
+      operationId: authenticate
+      summary: create an authorization token
+      description: Provides you a JWT to use with other endpoints. It has the privileges "date:read"
+      parameters:
+        - name: privileges
+          in: query
+          description: |
+            A list of privileges to set in the access token claims. Can be set multiple times to have multiple entires.
+            Example: `?privileges=date%3aread&privileges=test`
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        description: Login credentials. These are not actually checked. Only request validation is performed. The privileges that have been sent with the query parameter `privileges` will be set into the token payload.
+        required: true
+        content:
+          application/x.credentials.v2+json:
+            schema:
+              type: object
+              required:
+                - user
+                - pass
+              properties:
+                user:
+                  type: string
+                  minLength: 1
+                  example: user
+                pass:
+                  type: string
+                  minLength: 1
+                  example: pass
+          application/x.credentials.v1+json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  minLength: 1
+                  example: user
+                password:
+                  type: string
+                  minLength: 1
+                  example: pass
+      responses:
+        201:
+          description: successfully logged in
+          content:
+            application/x.access-token.v1+json:
+              schema:
+                type: object
+                required:
+                  - access_token
+                  - scheme
+                properties:
+                  access_token:
+                    type: string
+                    description: the bearer token that can be used with the other endpoints
+                  scheme:
+                    enum:
+                      - bearer
+  /dates/{time}:
+    description: |
+      This demonstrates
+      - custom authorization with the `security` property
+      - path parameters.
+    parameters:
+      - name: time
+        in: path
+        required: true
+        schema:
+          enum:
+            - today
+            - yesterday
+    get:
+      operationId: getDateByTime
+      summary: Date
+      description: Responds with a special date.
+      security:
+        - requireAllPrivileges:
+            - test
+            - date:read
+      responses:
+        200:
+          description: A date response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  date:
+                    type: string
+                    format: date
+                    example: 2025-04-09
+        401:
+          description: Unauthorized
+          content:
+            application/x.error.v1+json:
+              schema:
+                $ref: "#/components/schemas/x.error.v1"
+components:
+  securitySchemes:
+    requireAllPrivileges:
+      description: Checks if the specified minimum privileges are a subset of the `privileges` claim
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    x.error.v1:
+      type: object
+      required:
+        - code
+        - description
+      properties:
+        code:
+          type: integer
+          description: Status code uniquely identifying a specific problem.
+          readOnly: true
+        description:
+          type: string
+          description: >-
+            Human readable description of the status, providing reasonable
+            insight into why we error occurred - if any.
+          readOnly: true
+        fields:
+          type: array
+          description: Affected fields, if any
+          readOnly: true
+          items:
+            required:
+              - description
+              - name
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the field which produced the error
+                readOnly: true
+              description:
+                type: string
+                description: >-
+                  Human readable description about the nature of the error (e.g.
+                  expected value type vs. actual value)
+                readOnly: true

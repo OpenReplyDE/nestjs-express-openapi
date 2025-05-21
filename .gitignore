@@ -1,0 +1,15 @@
+/.vscode/
+/.idea/
+/config/local-*
+/config/local.*
+/coverage/
+/dist
+/docs
+/client
+/generated
+/node_modules
+/.env
+.terraform
+.terraform.*
+!.terraform.lock.hcl
+/.swc/

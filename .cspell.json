@@ -1,0 +1,31 @@
+{
+  "version": "0.2",
+  "useGitignore": true,
+  "ignorePaths": [
+    "config.json",
+    "bitbucket-pipelines/*",
+    "bitbucket-pipelines.yml"
+  ],
+  "words": [
+    "Cako",
+    "Hzqm",
+    "Kxixbd",
+    "Qofy",
+    "Sdpfx",
+    "XVCJ",
+    "apidevtools",
+    "apiv",
+    "aread",
+    "customfav",
+    "expressjwt",
+    "jwtid",
+    "kuypx",
+    "msgpack",
+    "openreply",
+    "openreplyde",
+    "pkgroll",
+    "swcrc",
+    "vmxmz",
+    "wecjp"
+  ]
+}

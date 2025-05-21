@@ -1,0 +1,17 @@
+skipMissing: true
+ignores:
+  - "@nestjs/testing"
+  - "@tsconfig/node20"
+  - "@types/chance"
+  - "@types/node"
+  - "@types/supertest"
+  - cspell
+  - get-stream
+  - jest-chance
+  - pg
+  - pre-commit
+  - prettier-plugin-packagejson
+  - rimraf
+  - sqlite3
+  - supertest
+  - ts-node
