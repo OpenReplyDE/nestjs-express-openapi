@@ -19,6 +19,18 @@ It is based on the following third party packages
 
 # Installation
 
+## Configure NPM Registry Access
+Make sure you can install packages from Github's NPM registry. See [how to use it the official documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package) for details.
+TL;DR: If your personal Github access token with `read:packages` scope is `$GITHUB_NPM_TOKEN`, you can authenticate npm by running
+```bash
+echo "@openreplyde:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_NPM_TOKEN}
+" >> ~/.npmrc
+```
+You only need to do the above once on your machine.
+
+## Install and Use the Package
+
 Install the package with
 
 ```bash
