@@ -15,8 +15,6 @@ It is based on the following third party packages
 - [`express-jwt`](https://www.npmjs.com/package/express-jwt) to verify JWT signatures
 - [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express) to provide an endpoint that serves the OpenAPI spec as JSON and to serve a Swagger UI
 
-[TOC]
-
 # Installation
 
 ## Configure NPM Registry Access
