@@ -1,16 +1,16 @@
-import assert from 'node:assert';
+import assert from "node:assert";
 import type {
   OpenAPIV3,
   SecurityHandler,
-} from '@openreplyde/nestjs-express-openapi';
-import type * as Express from 'express';
-import { error } from 'express-openapi-validator';
-import { z } from 'zod/v4';
+} from "@openreplyde/nestjs-express-openapi";
+import type * as Express from "express";
+import { error } from "express-openapi-validator";
+import { z } from "zod/v4";
 
 const JwtSecurityScheme = z.object({
-  type: z.literal('http'),
-  scheme: z.literal('bearer'),
-  bearerFormat: z.literal('JWT'),
+  type: z.literal("http"),
+  scheme: z.literal("bearer"),
+  bearerFormat: z.literal("JWT"),
 });
 
 const ReqWithJwt = z.object({
@@ -32,11 +32,11 @@ function isOfZodType<T extends z.ZodType>(
  * Checks if the specified minimum privileges are a subset of the `privileges` claim.
  */
 export const requireAllPrivileges: SecurityHandler = (
-  req: Pick<Express.Request, 'path'>,
+  req: Pick<Express.Request, "path">,
   specifiedPrivileges: string[],
   schema: OpenAPIV3.SecuritySchemeObject,
 ): boolean => {
-  assert(isOfZodType(JwtSecurityScheme, schema), 'Invalid security scheme');
+  assert(isOfZodType(JwtSecurityScheme, schema), "Invalid security scheme");
 
   if (!isOfZodType(ReqWithJwt, req)) {
     return false;
@@ -49,7 +49,7 @@ export const requireAllPrivileges: SecurityHandler = (
   ) {
     throw new error.Forbidden({
       path: req.path,
-      message: 'You have insufficient privileges to access this resource',
+      message: "You have insufficient privileges to access this resource",
     });
   }
 
