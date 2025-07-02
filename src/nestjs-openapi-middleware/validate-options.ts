@@ -26,7 +26,7 @@ export type NestjsOpenapiMiddlewareOptions = z.infer<
   // This override needs to be done because the OpenAPI validator has its own validation
   apiSpec: OpenAPIV3.DocumentV3 | OpenAPIV3.DocumentV3_1;
   // This override needs to be done because the `secret` property needs to match an interface
-  jwtVerifier: expressJwt.Params | undefined;
+  jwtVerifier?: expressJwt.Params | undefined;
   // This override needs to be done because of all the different function interfaces
   openapiValidator: Omit<ExpressOpenapiValidatorMiddlewareOptions, "apiSpec">;
 };
