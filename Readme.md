@@ -68,6 +68,7 @@ import { apiSpec } from '../generated/openapi.js';
         algorithms: ['HS512'],
       },
       openapiValidator: {
+        ignorePaths: /^\/(api\/)?health(\/.*)?/, // ignore all health check paths if you do not want to have them in your openapi.yaml
         validateSecurity: { // optional JWT payload validation
           handlers: {
             // the keys of this object must match the `securitySchemes` names in the openapi.yaml
