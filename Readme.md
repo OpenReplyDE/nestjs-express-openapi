@@ -78,8 +78,8 @@ import { apiSpec } from '../generated/openapi.js';
         },
       },
       normalizeMediaTypes: false, // optionally normalize media types
-      docs: { path: '/api-docs' }, // optional endpoint to serve the OpenAPI specification as JSON
-      swaggerUi: { path: '/swagger-ui' }, // optional endpoint to serve the Swagger UI
+      serveOpenapiDocs: { path: '/api-docs' }, // optional endpoint to serve the OpenAPI specification as JSON
+      serveSwaggerUi: { path: '/swagger-ui' }, // optional endpoint to serve the Swagger UI
     }),
   ],
   controllers: [AppController],
@@ -170,17 +170,17 @@ If you want to support such clients that normalize before sending the request, e
 Be aware that the modified specification only affects the internal validation logic but not the generated types in `openapi.ts`.
 Be aware that the actual requests and responses are modified.
 
-## `docs` (Optional)
+## `serveOpenapiDocs` (Optional)
 This option sets up an endpoint to serve the OpenAPI specification as JSON.
-If you set `docs: { path: "/api-docs" }` you can fetch the API spec:
+If you set `serveOpenapiDocs: { path: "/api-docs" }` you can fetch the API spec:
 ```bash
 ❯ curl 'localhost:3000/api-docs'
 # => {"openapi":"3.1.0","info":{"title":"api-first-project","summary":...
 ```
 
-## `swaggerUi` (Optional)
-If you set `swaggerUi: { path: '/swagger-ui' }`, a HTML representation of the API documentation (Swagger UI) is served at [/swagger-ui](http://localhost:3000/swagger-ui).
-The `swaggerUi` option accepts all options of the [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express) package.
+## `serveSwaggerUi` (Optional)
+If you set `serveSwaggerUi: { path: '/swagger-ui' }`, a HTML representation of the API documentation (Swagger UI) is served at [/swagger-ui](http://localhost:3000/swagger-ui).
+The `serveSwaggerUi` option accepts all options of the [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express) package.
 
 
 # Type Utilities

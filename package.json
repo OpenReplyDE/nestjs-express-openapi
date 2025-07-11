@@ -3,7 +3,7 @@
   "repository": {
     "url": "git+https://github.com/OpenReplyDE/nestjs-express-openapi.git"
   },
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "OpenAPI to NestJS Code Generator and Type Helpers",
   "license": "MIT",
   "main": "dist/index.cjs",
