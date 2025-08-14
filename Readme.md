@@ -62,7 +62,7 @@ import { apiSpec } from '../generated/openapi.js';
   imports: [
     OpenapiMiddlewareModule.register({
       apiSpec,
-      jwtVerifier: { // optional JWT signature verification
+      jwtVerifier: { // optional JWT signature verification; default: undefined
         // DO NOT USE this config for production. Use more secure settings like "RS512" with a key pair
         secret: 'my-secret',
         algorithms: ['HS512'],
@@ -77,9 +77,9 @@ import { apiSpec } from '../generated/openapi.js';
           },
         },
       },
-      normalizeMediaTypes: false, // optionally normalize media types
-      serveOpenapiDocs: { path: '/api-docs' }, // optional endpoint to serve the OpenAPI specification as JSON
-      serveSwaggerUi: { path: '/swagger-ui' }, // optional endpoint to serve the Swagger UI
+      normalizeMediaTypes: false, // optionally normalize media types; default: false
+      serveOpenapiDocs: { path: '/api-docs' }, // optional endpoint to serve the OpenAPI specification as JSON; default: undefined
+      serveSwaggerUi: { path: '/swagger-ui' }, // optional endpoint to serve the Swagger UI; default: undefined
     }),
   ],
   controllers: [AppController],
@@ -193,15 +193,12 @@ import type {
   RequestBody,
   RequestHeaders,
   ResponseBody,
-  ResponseHeaders,
-} from '@openreplyde/nestjs-express-openapi';
+} from "../generated/openapi.js";
 ```
-
-They all function basically the same: They take the `paths` object and a qualifier as type arguments and give you the corresponding type. Examples are:
 
 This type will give you the query parameters that are specified at `GET /greetings`:
 ```ts
-type GetDatesQuery = QueryParameters<paths, { method: 'get'; path: '/greetings' }>;
+type GetDatesQuery = QueryParameters<{ method: 'get'; path: '/greetings' }>;
 /* => type GetDatesQuery = {
     name?: string;
 } | undefined */
@@ -209,7 +206,7 @@ type GetDatesQuery = QueryParameters<paths, { method: 'get'; path: '/greetings' 
 
 This type will give you the path parameters that are specified at `GET /dates/{time}`:
 ```ts
-type GetDatesParams = PathParameters<paths, { method: 'get'; path: '/dates/{time}' }>;
+type GetDatesParams = PathParameters<{ method: 'get'; path: '/dates/{time}' }>;
 /* => type GetDatesParams = {
     time: "today" | "yesterday";
 } */
@@ -218,7 +215,7 @@ type GetDatesParams = PathParameters<paths, { method: 'get'; path: '/dates/{time
 Note that the `RequestBody` requires an additional `contentType` property:
 This type will give you the request body type that is specified at `POST /authentications` for the `application/x.credentials.v1+json` request-content-type:
 ```ts
-type AuthenticationBody = RequestBody<paths, { method: 'post'; path: '/authentications'; contentType: 'application/x.credentials.v1+json' }>;
+type AuthenticationBody = RequestBody<{ method: 'post'; path: '/authentications'; contentType: 'application/x.credentials.v1+json' }>;
 /* => type AuthenticationBody = {
     username: string;
     password: string;
@@ -227,7 +224,7 @@ type AuthenticationBody = RequestBody<paths, { method: 'post'; path: '/authentic
 
 Please also note that `ResponseBody` requires a `status` property in the second type argument:
 ```ts
-type TokenResponse = ResponseBody< paths, { method: 'post'; path: '/authentications'; status: 200 } >;
+type TokenResponse = ResponseBody<{ method: 'post'; path: '/authentications'; status: 200 } >;
 /* => type TokenResponse = {
     access_token: string;
     scheme: "bearer";

@@ -111,7 +111,17 @@ export const compileCommandModule = commandModule({
       },
     });
 
-    let code = `import type { OpenAPIV3 } from '@openreplyde/nestjs-express-openapi';
+    let code = `import type {
+  CookieParameters as LibCookieParameters,
+  HttpMethod,
+  OpenAPIV3,
+  PathParameters  as LibPathParameters,
+  QueryParameters as LibQueryParameters,
+  RequestBody as LibRequestBody,
+  RequestHeaders as LibRequestHeaders,
+  ResponseBody as LibResponseBody,
+  ResponseHeaders as LibResponseHeaders,
+} from '@openreplyde/nestjs-express-openapi';
 
 ${astToString(
   await openapiTS(apiSpec as OpenAPI3, {
@@ -124,6 +134,47 @@ ${astToString(
     emptyObjectsUnknown: args["empty-objects-unknown"],
   }),
 )}
+
+export type CookieParameters<
+  Filter extends { path?: string; method?: HttpMethod } = object,
+> = LibCookieParameters<paths, Filter>
+
+export type PathParameters<
+  Filter extends { path?: string; method?: HttpMethod } = object,
+> = LibPathParameters<paths, Filter>
+
+export type QueryParameters<
+  Filter extends { path?: string; method?: HttpMethod } = object,
+> = LibQueryParameters<paths, Filter>
+
+export type RequestBody<
+  Filter extends {
+    path?: string;
+    method?: HttpMethod;
+    contentType?: string;
+  } = object,
+> = LibRequestBody<paths, Filter>
+
+export type RequestHeaders<
+  Filter extends { path?: string; method?: HttpMethod } = object,
+> = LibRequestHeaders<paths, Filter>
+
+export type ResponseBody<
+  Filter extends {
+    path?: string;
+    method?: HttpMethod;
+    statusCode?: number;
+    contentType?: string;
+  } = object,
+> = LibResponseBody<paths, Filter>
+
+export type ResponseHeaders<
+  Filter extends {
+    path?: string;
+    method?: HttpMethod;
+    statusCode?: number;
+  } = object,
+> = LibResponseHeaders<paths, Filter>
 
 /** OpenAPI specification */
 export const apiSpec: OpenAPIV3.DocumentV3 | OpenAPIV3.DocumentV3_1  = ${JSON.stringify(apiSpec)}${
