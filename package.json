@@ -3,7 +3,7 @@
   "repository": {
     "url": "git+https://github.com/OpenReplyDE/nestjs-express-openapi.git"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "OpenAPI to NestJS Code Generator and Type Helpers",
   "license": "MIT",
   "main": "dist/index.cjs",
@@ -58,7 +58,6 @@
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^20.17.32",
-    "@types/prettier": "^3.0.0",
     "@types/supertest": "^6.0.3",
     "@types/swagger-ui-express": "^4.1.8",
     "@types/yargs": "^17.0.0",
@@ -75,7 +74,6 @@
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.1.1",
-    "@types/prettier": "^3.0.0",
     "@types/swagger-ui-express": "^4.1.8",
     "express-jwt": "^8.5.1",
     "express-openapi-validator": "^5.5.2",
