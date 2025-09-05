@@ -1,5 +1,6 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
+  "root": false,
+  "$schema": "https://biomejs.dev/schemas/2.2.2/schema.json",
   "formatter": {
     "enabled": true,
     "attributePosition": "auto",
@@ -31,9 +32,17 @@
       }
     }
   },
+  "files": {
+    "includes": [
+      "**",
+      "!**/dist/**/*",
+      "!**/examples/commonjs/dist/**/*",
+      "!**/examples/esm/dist/**/*"
+    ]
+  },
   "overrides": [
     {
-      "include": ["**/package.json"],
+      "includes": ["**/package.json"],
       "formatter": {
         "lineWidth": 1
       }

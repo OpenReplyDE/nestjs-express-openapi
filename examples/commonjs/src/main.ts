@@ -1,6 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { OPENAPI_MIDDLEWARE } from "@openreplyde/nestjs-express-openapi";
-import { type RequestHandler, json } from "express";
+import { json, type RequestHandler } from "express";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {

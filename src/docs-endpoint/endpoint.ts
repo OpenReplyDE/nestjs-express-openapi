@@ -4,13 +4,14 @@ import {
   type Response,
   Router,
 } from "express";
-import { OpenAPIV3 } from "express-openapi-validator/dist/framework/types.js";
+
+import type { ExtendedOpenAPIV3 } from "../express-openapi-validator-middleware/index.js";
 
 import { DocsOptions } from "./validate-options.js";
 
 export function createDocsEndpoint(
   options: DocsOptions,
-  apiSpec: OpenAPIV3.DocumentV3 | OpenAPIV3.DocumentV3_1,
+  apiSpec: ExtendedOpenAPIV3.DocumentV3 | ExtendedOpenAPIV3.DocumentV3_1,
 ): RequestHandler {
   const router = Router();
   if (!options) {

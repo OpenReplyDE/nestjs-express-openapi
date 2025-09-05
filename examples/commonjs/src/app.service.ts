@@ -10,7 +10,7 @@ export class AppService {
   createToken(privileges: string[]) {
     // You would not create a token just like this in a production system.
     // This just illustrates how custom security handling can be implemented.
-    const nowUnixSeconds = Math.floor(new Date().getTime() / 1000);
+    const nowUnixSeconds = Math.floor(Date.now() / 1000);
     return jsonwebtoken.sign(
       {
         iat: nowUnixSeconds,

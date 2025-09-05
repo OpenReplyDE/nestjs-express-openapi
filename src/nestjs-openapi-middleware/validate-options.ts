@@ -1,11 +1,13 @@
 import type * as expressJwt from "express-jwt";
-import type { OpenAPIV3 } from "express-openapi-validator/dist/framework/types.js";
 import { z } from "zod/v4";
 
 import { DocsOptions } from "../docs-endpoint/validate-options.js";
 import { ErrorHandlerMiddlewareOptions } from "../error-handler-middleware/validate-options.js";
 import { ExpressJwtVerifierMiddlewareOptions } from "../express-jwt-verifier-middleware/index.js";
-import { ExpressOpenapiValidatorMiddlewareOptions } from "../express-openapi-validator-middleware/index.js";
+import {
+  ExpressOpenapiValidatorMiddlewareOptions,
+  type ExtendedOpenAPIV3,
+} from "../express-openapi-validator-middleware/index.js";
 import { NormalizeMediaTypesOptions } from "../openapi-media-type-normalizer-middleware/index.js";
 import { SwaggerUiOptions } from "../swagger-ui-endpoint/index.js";
 
@@ -24,7 +26,7 @@ export type NestjsOpenapiMiddlewareOptions = z.infer<
   typeof NestjsOpenapiMiddlewareOptions
 > & {
   // This override needs to be done because the OpenAPI validator has its own validation
-  apiSpec: OpenAPIV3.DocumentV3 | OpenAPIV3.DocumentV3_1;
+  apiSpec: ExtendedOpenAPIV3.DocumentV3 | ExtendedOpenAPIV3.DocumentV3_1;
   // This override needs to be done because the `secret` property needs to match an interface
   jwtVerifier?: expressJwt.Params | undefined;
   // This override needs to be done because of all the different function interfaces

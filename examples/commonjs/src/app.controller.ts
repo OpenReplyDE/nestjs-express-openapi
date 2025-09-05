@@ -8,7 +8,7 @@ import {
   Query,
   Res,
 } from "@nestjs/common";
-import { type Response } from "express";
+import type { Response } from "express";
 
 import type {
   PathParameters,
@@ -17,7 +17,7 @@ import type {
   // RequestHeaders, // There is no example here for it but it is used the same way as RequestBody. It ensures types of specified request headers.
   ResponseBody,
 } from "../generated/openapi";
-import { AppService } from "./app.service";
+import type { AppService } from "./app.service";
 
 @Controller()
 export class AppController {
@@ -28,7 +28,7 @@ export class AppController {
     @Query()
     query: QueryParameters<{ method: "get"; path: "/greetings" }>,
   ): Promise<ResponseBody<{ method: "get"; path: "/greetings"; status: 200 }>> {
-    return this.appService.getHello(query?.name ?? "World");
+    return this.appService.getHello(query.name ?? "World");
   }
 
   @Post("/authentications")
@@ -95,7 +95,7 @@ export class AppController {
   ): Promise<
     ResponseBody<{ method: "get"; path: "/dates/{time}"; status: 200 }>
   > {
-    const nowUnixMilliseconds = new Date().getTime();
+    const nowUnixMilliseconds = Date.now();
 
     const date =
       params.time === "yesterday"

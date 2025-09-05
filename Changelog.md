@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+This release allows you to use `x-extensible-enum` in API specifications such that you can be compliant with [Zalando's RESTful API Guidelines](https://opensource.zalando.com/restful-api-guidelines/).
+
 ## 0.2.0
 
 ### New Features

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.2/schema.json",
   "formatter": {
     "enabled": true,
     "attributePosition": "auto",
@@ -32,11 +32,17 @@
     }
   },
   "files": {
-    "ignore": ["dist/*", "examples/commonjs/dist/*", "examples/esm/dist/*"]
+    "includes": [
+      "**",
+      "!**/dist/**/*",
+      "!**/examples/commonjs/dist/**/*",
+      "!**/examples/esm/dist/**/*",
+      "!src/express-openapi-validator-middleware/types/extended-openapi-v3.ts"
+    ]
   },
   "overrides": [
     {
-      "include": ["**/package.json"],
+      "includes": ["**/package.json"],
       "formatter": {
         "lineWidth": 1
       }

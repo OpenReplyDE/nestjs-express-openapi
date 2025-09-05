@@ -374,7 +374,7 @@ describe("openapi-media-type-normalizer normalize-api-spec", () => {
   it("normalizes the media types of accept-types without refs", async () => {
     const specObject =
       normalizedApiSpec.paths["/foo/without-ref"].get?.responses?.[200];
-    // @ts-ignore
+    // @ts-expect-error
     const content = specObject?.content;
 
     expect(Object.keys(content)).toEqual([
@@ -388,7 +388,7 @@ describe("openapi-media-type-normalizer normalize-api-spec", () => {
   it("normalizes the media types of accept-types in the writing endpoint in the paths objects", async () => {
     const specObject =
       normalizedApiSpec.paths["/foo/without-ref"].post?.responses?.[200];
-    // @ts-ignore
+    // @ts-expect-error
     const content = specObject?.content;
 
     expect(Object.keys(content)).toEqual([
@@ -402,7 +402,7 @@ describe("openapi-media-type-normalizer normalize-api-spec", () => {
   it("normalizes the media types of content-types in the writing endpoint in the paths objects", async () => {
     const specObject =
       normalizedApiSpec.paths["/foo/without-ref"].post?.requestBody;
-    // @ts-ignore
+    // @ts-expect-error
     const content = specObject?.content;
 
     expect(Object.keys(content)).toEqual([
@@ -416,7 +416,7 @@ describe("openapi-media-type-normalizer normalize-api-spec", () => {
   it("normalizes the media types of accept-types in the paths objects", async () => {
     const specObject =
       normalizedApiSpec.paths["/foo/without-ref"].get?.responses?.[200];
-    // @ts-ignore
+    // @ts-expect-error
     const content = specObject?.content;
 
     expect(Object.keys(content)).toEqual([
@@ -429,7 +429,7 @@ describe("openapi-media-type-normalizer normalize-api-spec", () => {
 
   it("normalizes the media types of accept-types in the component.responses", async () => {
     const specObject = normalizedApiSpec.components?.responses?.any;
-    // @ts-ignore
+    // @ts-expect-error
     const content = specObject?.content;
 
     expect(Object.keys(content)).toEqual([
@@ -442,7 +442,7 @@ describe("openapi-media-type-normalizer normalize-api-spec", () => {
 
   it("normalizes the media types of content-types in the component.requestBodies", async () => {
     const specObject = normalizedApiSpec.components?.requestBodies?.post;
-    // @ts-ignore
+    // @ts-expect-error
     const content = specObject?.content;
 
     expect(Object.keys(content)).toEqual([

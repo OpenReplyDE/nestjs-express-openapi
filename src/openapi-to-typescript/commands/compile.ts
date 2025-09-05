@@ -114,7 +114,7 @@ export const compileCommandModule = commandModule({
     let code = `import type {
   CookieParameters as LibCookieParameters,
   HttpMethod,
-  OpenAPIV3,
+  ExtendedOpenAPIV3,
   PathParameters  as LibPathParameters,
   QueryParameters as LibQueryParameters,
   RequestBody as LibRequestBody,
@@ -177,7 +177,7 @@ export type ResponseHeaders<
 > = LibResponseHeaders<paths, Filter>
 
 /** OpenAPI specification */
-export const apiSpec: OpenAPIV3.DocumentV3 | OpenAPIV3.DocumentV3_1  = ${JSON.stringify(apiSpec)}${
+export const apiSpec: ExtendedOpenAPIV3.DocumentV3 | ExtendedOpenAPIV3.DocumentV3_1  = ${JSON.stringify(apiSpec)}${
       args["immutable-exports"] ? " as const" : ""
     };\n`;
 

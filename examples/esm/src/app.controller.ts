@@ -95,7 +95,7 @@ export class AppController {
   ): Promise<
     ResponseBody<{ method: "get"; path: "/dates/{time}"; status: 200 }>
   > {
-    const nowUnixMilliseconds = new Date().getTime();
+    const nowUnixMilliseconds = Date.now();
 
     const date =
       params.time === "yesterday"

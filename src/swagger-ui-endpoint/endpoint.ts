@@ -1,12 +1,11 @@
 import { RequestHandler, Router } from "express";
-import { OpenAPIV3 } from "express-openapi-validator/dist/framework/types.js";
 import { serve, setup } from "swagger-ui-express";
-
+import { type ExtendedOpenAPIV3 } from "../express-openapi-validator-middleware/index.js";
 import { SwaggerUiOptions } from "./validate-options.js";
 
 export function createSwaggerUiEndpoint(
   options: SwaggerUiOptions,
-  apiSpec: OpenAPIV3.DocumentV3 | OpenAPIV3.DocumentV3_1,
+  apiSpec: ExtendedOpenAPIV3.DocumentV3 | ExtendedOpenAPIV3.DocumentV3_1,
 ): RequestHandler {
   const router = Router();
   const { path, ...swaggerUiOptions } =
