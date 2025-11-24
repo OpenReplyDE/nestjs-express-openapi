@@ -408,7 +408,6 @@ describe("error-handler-middleware e2e", () => {
         });
 
         describe("in the Content-Type header", () => {
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the content-type header is not OpenAPI-specified", () => {
             let accept: string;
             let contentType: string;
@@ -451,7 +450,6 @@ describe("error-handler-middleware e2e", () => {
         });
 
         describe("in the Content-Type header", () => {
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the content-type header is not OpenAPI-specified", () => {
             let accept: string;
             let contentType: string;
@@ -509,7 +507,6 @@ describe("error-handler-middleware e2e", () => {
         });
 
         describe("in the Content-Type header", () => {
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the content-type header is not OpenAPI-specified", () => {
             let accept: string;
             let contentType: string;
@@ -553,7 +550,6 @@ describe("error-handler-middleware e2e", () => {
         });
 
         describe("in the Content-Type header", () => {
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the content-type header is not OpenAPI-specified", () => {
             let accept: string;
             let contentType: string;

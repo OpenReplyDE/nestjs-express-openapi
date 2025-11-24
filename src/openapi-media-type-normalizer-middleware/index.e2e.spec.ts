@@ -408,7 +408,6 @@ describe("openapi-media-type-normalizer e2e", () => {
         });
 
         describe("in the Accept header", () => {
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified response body type does not have a space before the parameters", () => {
             let normalizedAccept: string;
             beforeEach(() => {
@@ -458,7 +457,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified response body type has a space before the parameters", () => {
             let normalizedAccept: string;
             beforeEach(() => {
@@ -508,7 +506,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified response body type does not have parameters", () => {
             let normalizedAccept: string;
             let accept: string;
@@ -532,7 +529,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the requested content type is not OpenAPI-specified", () => {
             let accept: string;
             beforeEach(() => {
@@ -552,7 +548,6 @@ describe("openapi-media-type-normalizer e2e", () => {
         });
 
         describe("in the Content-Type header", () => {
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified request and response body types do not have a space before the parameters", () => {
             let normalizedAccept: string;
             let normalizedContentType: string;
@@ -635,7 +630,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified request and response body types have a space before the parameters", () => {
             let normalizedAccept: string;
             let normalizedContentType: string;
@@ -718,7 +712,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified request and response body types do not have parameters", () => {
             let normalizedAccept: string;
             let normalizedContentType: string;
@@ -757,7 +750,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the content-type header is not OpenAPI-specified", () => {
             let accept: string;
             let contentType: string;
@@ -779,7 +771,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the accept header is not OpenAPI-specified", () => {
             let accept: string;
             let contentType: string;
@@ -815,7 +806,6 @@ describe("openapi-media-type-normalizer e2e", () => {
         });
 
         describe("in the Accept header", () => {
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified response body type does not have a space before the parameters", () => {
             let normalizedAccept: string;
             beforeEach(() => {
@@ -865,7 +855,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified response body type has a space before the parameters", () => {
             let normalizedAccept: string;
             beforeEach(() => {
@@ -915,7 +904,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified response body type does not have parameters", () => {
             let normalizedAccept: string;
             let accept: string;
@@ -939,7 +927,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the requested content type is not OpenAPI-specified", () => {
             let accept: string;
             beforeEach(() => {
@@ -959,7 +946,6 @@ describe("openapi-media-type-normalizer e2e", () => {
         });
 
         describe("in the Content-Type header", () => {
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified request and response body types do not have a space before the parameters", () => {
             let normalizedAccept: string;
             let normalizedContentType: string;
@@ -1042,7 +1028,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified request and response body types have a space before the parameters", () => {
             let normalizedAccept: string;
             let normalizedContentType: string;
@@ -1069,8 +1054,7 @@ describe("openapi-media-type-normalizer e2e", () => {
                   })
                   .set("Accept", accept)
                   .set("Content-Type", contentType);
-                // expect(response.statusCode).toEqual(200);
-                console.log(response);
+                expect(response.statusCode).toEqual(200);
               });
 
               it("the request object has the correct, normalized accept and content-types headers", async () => {
@@ -1126,7 +1110,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the OpenAPI-specified request and response body types do not have parameters", () => {
             let normalizedAccept: string;
             let normalizedContentType: string;
@@ -1165,7 +1148,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the content-type header is not OpenAPI-specified", () => {
             let accept: string;
             let contentType: string;
@@ -1187,7 +1169,6 @@ describe("openapi-media-type-normalizer e2e", () => {
             });
           });
 
-          // biome-ignore lint/complexity/noExcessiveNestedTestSuites: This is needed for readable structuring
           describe("when the accept header is not OpenAPI-specified", () => {
             let accept: string;
             let contentType: string;

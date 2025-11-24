@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+The package now exports the type `NestjsOpenapiMiddlewareOptions` which is the type of the parameter of `OpenapiMiddlewareModule.register()`.
+
 ## 0.3.0
 
 This release allows you to use `x-extensible-enum` in API specifications such that you can be compliant with [Zalando's RESTful API Guidelines](https://opensource.zalando.com/restful-api-guidelines/).

@@ -9,6 +9,7 @@ export type {
   ExtendedOpenAPIV3,
 } from "./express-openapi-validator-middleware/index.js";
 export {
+  type NestjsOpenapiMiddlewareOptions,
   OPENAPI_MIDDLEWARE,
   OpenapiMiddlewareModule,
 } from "./nestjs-openapi-middleware/index.js";
