@@ -120,7 +120,31 @@ No need for guards that check for json web token clams.
 
 You can use the Type utilities to get easier access to the generated types.
 
-# Options
+# CLI Options
+
+The CLI is supposed to be called as in
+
+```bash
+npx openapi-to-typescript compile openApiInputFile typescriptOutputFile
+```
+
+which reads the `openApiInputFile` (JSON or YAML) and generates a `typeScriptOutputFile`.
+
+The output contains the types of the API and the API specification as a TypeScript object.
+
+There are several options to customize the output. Run the following for a detailed list:
+
+```bash
+npx openapi-to-typescript compile --help
+```
+
+In the following, we describe only the most notable:
+
+## `--preserve-x-extensible-enum` (default: false)
+
+If you apply [Zalando RESTful API and Event Guidelines](https://opensource.zalando.com/restful-api-guidelines/), you are not using `enum` in the API, but `x-extensible-enum`. This is great for documentation, but it hinders development a little. Therefore, the output contains `enum` instead of `x-extensible-enum`. This affects the types as well as request/response validation. You can keep `x-extensible-enum` which allows for any string to be used by passing the `--preserve-x-extensible-enum` parameter.
+
+# JS API Options
 
 ## `apiSpec` (Required)
 This is the openapi.yaml as a structured type.

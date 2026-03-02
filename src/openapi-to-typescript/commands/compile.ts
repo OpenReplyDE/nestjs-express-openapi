@@ -2,6 +2,25 @@ import type { OpenAPI3 } from "openapi-typescript";
 
 import { CommandModule } from "yargs";
 
+// biome-ignore lint/suspicious/noExplicitAny: This is supposed to work on any data
+function deepRenameKeys(obj: any, replacer: (key: string) => string): any {
+  if (Array.isArray(obj)) {
+    return obj.map((item) => deepRenameKeys(item, replacer));
+  } else if (obj !== null && typeof obj === "object") {
+    // biome-ignore lint/suspicious/noExplicitAny: This is supposed to work on any data
+    const newObj: any = {};
+    for (const key in obj) {
+      const newKey = replacer(key);
+      const value = obj[key];
+      delete obj[key];
+      newObj[newKey] = deepRenameKeys(value, replacer);
+    }
+    return newObj;
+  } else {
+    return obj;
+  }
+}
+
 function commandModule<T = object, U extends T = T>(
   module: CommandModule<T, U>,
 ): CommandModule<T, U> {
@@ -35,6 +54,11 @@ export const compileCommandModule = commandModule({
         type: "boolean",
         desc: "validate the OpenAPI specification",
         default: true,
+      })
+      .option("preserve-x-extensible-enum", {
+        type: "boolean",
+        desc: "Preserve 'x-extensible-enum' fields in the OpenAPI specification in the output file. Otherwise these will be renamed to 'enum' and treated as regular enums.",
+        default: false,
       })
       .option("additional-properties", {
         type: "boolean",
@@ -92,7 +116,7 @@ export const compileCommandModule = commandModule({
       "@apidevtools/swagger-parser"
     );
 
-    const apiSpec = await SwaggerParser.bundle(args.input, {
+    const apiSpecOriginal = await SwaggerParser.bundle(args.input, {
       parse: {
         json: { allowEmpty: false },
         text: { allowEmpty: true, canParse: ".txt" },
@@ -109,6 +133,12 @@ export const compileCommandModule = commandModule({
         schema: args.validate,
         spec: args.validate,
       },
+    });
+    const apiSpec = deepRenameKeys(apiSpecOriginal, (key) => {
+      if (key === "x-extensible-enum" && !args["preserve-x-extensible-enum"]) {
+        return "enum";
+      }
+      return key;
     });
 
     let code = `import type {
