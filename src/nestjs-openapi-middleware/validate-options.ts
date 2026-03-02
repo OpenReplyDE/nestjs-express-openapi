@@ -11,6 +11,8 @@ import {
 import { NormalizeMediaTypesOptions } from "../openapi-media-type-normalizer-middleware/index.js";
 import { SwaggerUiOptions } from "../swagger-ui-endpoint/index.js";
 
+type ApiSpec = ExtendedOpenAPIV3.DocumentV3 | ExtendedOpenAPIV3.DocumentV3_1;
+
 export const NestjsOpenapiMiddlewareOptions = z.object({
   apiSpec: z.any(),
   handleErrors: z.optional(ErrorHandlerMiddlewareOptions),
@@ -26,7 +28,7 @@ export type NestjsOpenapiMiddlewareOptions = z.infer<
   typeof NestjsOpenapiMiddlewareOptions
 > & {
   // This override needs to be done because the OpenAPI validator has its own validation
-  apiSpec: ExtendedOpenAPIV3.DocumentV3 | ExtendedOpenAPIV3.DocumentV3_1;
+  apiSpec: ApiSpec & { _originalApiSpec?: ApiSpec };
   // This override needs to be done because the `secret` property needs to match an interface
   jwtVerifier?: expressJwt.Params | undefined;
   // This override needs to be done because of all the different function interfaces

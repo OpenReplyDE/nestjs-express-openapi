@@ -23,18 +23,24 @@ export const createExpressOpenapiMiddleware: CreateExpressOpenapiMiddleware = (
   validateOptions(options);
   const router = Router();
 
-  let apiSpec = options.apiSpec;
+  const originalApiSpec = options.apiSpec._originalApiSpec ?? options.apiSpec;
+
+  let apiSpec = { ...options.apiSpec };
+  delete apiSpec._originalApiSpec;
+
   if (options.normalizeMediaTypes) {
     apiSpec = normalizeApiSpec(options.apiSpec);
     router.use(createOpenapiMediaTypeNormalizerMiddleware());
   }
 
   if (options.serveOpenapiDocs) {
-    router.use(createDocsEndpoint(options.serveOpenapiDocs, apiSpec));
+    router.use(createDocsEndpoint(options.serveOpenapiDocs, originalApiSpec));
   }
 
   if (options.serveSwaggerUi) {
-    router.use(createSwaggerUiEndpoint(options.serveSwaggerUi, apiSpec));
+    router.use(
+      createSwaggerUiEndpoint(options.serveSwaggerUi, originalApiSpec),
+    );
   }
 
   if (options.jwtVerifier) {

@@ -12,7 +12,6 @@ function deepRenameKeys(obj: any, replacer: (key: string) => string): any {
     for (const key in obj) {
       const newKey = replacer(key);
       const value = obj[key];
-      delete obj[key];
       newObj[newKey] = deepRenameKeys(value, replacer);
     }
     return newObj;
@@ -140,6 +139,7 @@ export const compileCommandModule = commandModule({
       }
       return key;
     });
+    apiSpec._originalApiSpec = apiSpecOriginal;
 
     let code = `import type {
   CookieParameters as LibCookieParameters,
@@ -206,8 +206,10 @@ export type ResponseHeaders<
   } = object,
 > = LibResponseHeaders<paths, Filter>
 
-/** OpenAPI specification */
-export const apiSpec: ExtendedOpenAPIV3.DocumentV3 | ExtendedOpenAPIV3.DocumentV3_1  = ${JSON.stringify(apiSpec)}${
+type ApiSpec = ExtendedOpenAPIV3.DocumentV3 | ExtendedOpenAPIV3.DocumentV3_1;
+
+/** OpenAPI specification ${args["preserve-x-extensible-enum"] ? "with 'x-extensible-enum' fields preserved" : "with 'x-extensible-enum' fields renamed to 'enum'"} */
+export const apiSpec: ApiSpec & { _originalApiSpec: ApiSpec }  = ${JSON.stringify(apiSpec)}${
       args["immutable-exports"] ? " as const" : ""
     };\n`;
 
