@@ -17,11 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "22.x"
+          node-version: "24"
           registry-url: "https://registry.npmjs.org"
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
-      - run: npm publish --provenance --access public
+          package-manager-cache: false
+      - run: node --version
+      - run: npm --version
+      - run: npm ci --ignore-scripts
+      - run: npm run build --ignore-scripts
+      - run: npm test --ignore-scripts
+      - run: npm publish --provenance --access public --ignore-scripts
