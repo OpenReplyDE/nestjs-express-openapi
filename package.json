@@ -42,48 +42,58 @@
     "node": ">=20.0.0"
   },
   "volta": {
-    "node": "20.15.0"
+    "node": "22.23.1"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.0.0 || ^11.0.0",
-    "@types/express": "^4.0.0 || ^5.0.0",
-    "@types/yargs": "^17.0.33",
-    "express": "^4.0.0 || ^5.0.0",
-    "yargs": ">= 17.7.2"
+    "yargs": ">= 17.7.2",
+    "express": "^5.2.1",
+    "@types/express": "^5.0.6"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    },
+    "@types/express": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^12.1.0",
+    "express-jwt": "^8.5.1",
+    "express-openapi-validator": "^5.6.2",
+    "openapi-typescript": "^7.13.0",
+    "prettier": "^3.9.5",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^4.4.3"
+  },
+  "overrides": {
+    "@types/body-parser": "<1.16.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.2",
-    "@swc/cli": "^0.7.8",
-    "@swc/core": "^1.13.5",
+    "@biomejs/biome": "^2.5.3",
+    "@swc/cli": "^0.8.1",
+    "@swc/core": "^1.15.43",
     "@swc/jest": "^0.2.39",
-    "@swc/plugin-transform-imports": "^11.1.0",
-    "@tsconfig/node20": "^20.1.6",
-    "@types/express": "^5.0.6",
+    "@swc/plugin-transform-imports": "^12.15.0",
+    "@tsconfig/node20": "^20.1.9",
+    "@types/body-parser": "<1.16.6",
+    "@types/connect": "^3.0.0, <3.4.38",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.3.1",
-    "@types/supertest": "^6.0.3",
+    "@types/node": "^26.1.1",
+    "@types/supertest": "^7.2.0",
     "@types/swagger-ui-express": "^4.1.8",
-    "@types/yargs": "^17.0.33",
-    "cspell": "^9.2.1",
+    "@types/yargs": "^17.0.35",
+    "cspell": "^10.0.1",
     "depcheck": "^1.4.7",
     "express": "^5.2.1",
     "husky": "^9.1.7",
-    "jest": "^30.1.3",
+    "jest": "^30.4.2",
     "jest-chance": "^0.2.5",
-    "npm-check-updates": "^19.1.2",
-    "pkgroll": "2.20",
-    "rimraf": "^6.0.1",
-    "supertest": "^7.1.4",
-    "typescript": "^5.9.2"
-  },
-  "dependencies": {
-    "@apidevtools/swagger-parser": "^12.0.0",
-    "@types/swagger-ui-express": "^4.1.8",
-    "express-jwt": "^8.5.1",
-    "express-openapi-validator": "^5.5.8",
-    "openapi-typescript": "^7.9.1",
-    "prettier": "^3.6.2",
-    "swagger-ui-express": "^5.0.1",
-    "zod": "^4.1.5"
+    "npm-check-updates": "^22.2.9",
+    "pkgroll": "^2.27.1",
+    "rimraf": "^6.1.3",
+    "supertest": "^7.2.2",
+    "typescript": "^5.9.3"
   }
 }
