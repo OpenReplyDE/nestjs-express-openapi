@@ -151,7 +151,7 @@ export const compileCommandModule = commandModule({
   RequestHeaders as LibRequestHeaders,
   ResponseBody as LibResponseBody,
   ResponseHeaders as LibResponseHeaders,
-} from '@openreplyde/nestjs-express-openapi';
+} from '@openreply/nestjs-express-openapi';
 
 ${astToString(
   await openapiTS(apiSpec as OpenAPI3, {

@@ -1,5 +1,5 @@
 import { NestFactory } from "@nestjs/core";
-import { OPENAPI_MIDDLEWARE } from "@openreplyde/nestjs-express-openapi";
+import { OPENAPI_MIDDLEWARE } from "@openreply/nestjs-express-openapi";
 import { json, type RequestHandler } from "express";
 import { AppModule } from "./app.module";
 

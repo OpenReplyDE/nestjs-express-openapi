@@ -2,7 +2,7 @@ import assert from "node:assert";
 import type {
   OpenAPIV3,
   SecurityHandler,
-} from "@openreplyde/nestjs-express-openapi";
+} from "@openreply/nestjs-express-openapi";
 import type * as Express from "express";
 import { error } from "express-openapi-validator";
 import { z } from "zod/v4";

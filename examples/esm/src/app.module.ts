@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { OpenapiMiddlewareModule } from "@openreplyde/nestjs-express-openapi";
+import { OpenapiMiddlewareModule } from "@openreply/nestjs-express-openapi";
 // Import the bundled API specification from the generated file
 import { apiSpec } from "../generated/openapi.js";
 import { AppController } from "./app.controller.js";

@@ -1,9 +1,9 @@
 {
-  "name": "@openreplyde/nestjs-express-openapi",
+  "name": "@openreply/nestjs-express-openapi",
   "repository": {
     "url": "git+https://github.com/OpenReplyDE/nestjs-express-openapi.git"
   },
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "OpenAPI to NestJS Code Generator and Type Helpers",
   "license": "MIT",
   "main": "dist/index.cjs",

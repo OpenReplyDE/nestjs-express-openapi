@@ -15,24 +15,12 @@ It is based on the following third party packages
 - [`express-jwt`](https://www.npmjs.com/package/express-jwt) to verify JWT signatures
 - [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express) to provide an endpoint that serves the OpenAPI spec as JSON and to serve a Swagger UI
 
-# Installation
-
-## Configure NPM Registry Access
-Make sure you can install packages from Github's NPM registry. See [how to use it the official documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package) for details.
-TL;DR: If your personal Github access token with `read:packages` scope is `$GITHUB_NPM_TOKEN`, you can authenticate npm by running
-```bash
-echo "@openreplyde:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_NPM_TOKEN}
-" >> ~/.npmrc
-```
-You only need to do the above once on your machine.
-
-## Install and Use the Package
+# Installation and Usage
 
 Install the package with
 
 ```bash
-npm i -S @openreplyde/nestjs-express-openapi
+npm i -S @openreply/nestjs-express-openapi
 ```
 
 First, write a regular `openapi.yaml` and place it next to your NestJS application's `package.json`.
@@ -50,7 +38,7 @@ This will compile the `openapi.yaml` to the `generated/openapi.ts` which gives y
 Then, configure the middlewares for OpenAPI and, if needed, JWT in your `app.module.ts`:
 ```ts
 import { Module } from '@nestjs/common';
-import { OpenapiMiddlewareModule } from '@openreplyde/nestjs-express-openapi';
+import { OpenapiMiddlewareModule } from '@openreply/nestjs-express-openapi';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { requireAllPrivileges } from './security-handler-privileges.js';
@@ -91,7 +79,7 @@ export class AppModule {}
 Finally, activate the middlewares in the `main.ts` that holds your `bootstrap()` function:
 ```ts
 import { NestFactory } from '@nestjs/core';
-import { OPENAPI_MIDDLEWARE } from '@openreplyde/nestjs-express-openapi';
+import { OPENAPI_MIDDLEWARE } from '@openreply/nestjs-express-openapi';
 import { type RequestHandler, json } from 'express';
 import { AppModule } from './app.module';
 
